@@ -1,10 +1,15 @@
 import React from "react";
+import styled from 'styled-components';
+const SContainer = styled.div`
+    width: 100%;
+    display: flex;
+    background-color: red;
+    height: 10px;
+`;
 
 const RegisterForm = () => {
     return (
-        <div>
-            <h1>Register Form</h1>
-        </div>
+        <SContainer></SContainer>
     )
 }
 

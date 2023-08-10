@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Bg = styled.div`
     position: relative;
-    background-image: ${props => `url(${props.image || '/images/bg/office1.svg'})`};
+    background-image: ${props => `url(${props.image || '/images/bg/work1.jpg'})`};
     min-height: ${props => props.height || '100vh'};
     min-width: ${props => props.width || '100vw'};
     background-repeat: no-repeat;
@@ -18,7 +18,7 @@ const FilterOverlay = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(21, 118, 163, 0.3);
+    background-color: rgba(32, 48, 84, 0.8);
     z-index: 1; 
 `;
 
