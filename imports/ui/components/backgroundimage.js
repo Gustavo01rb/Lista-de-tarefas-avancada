@@ -5,10 +5,10 @@ const Bg = styled.div`
     position: relative;
     background-image: ${props => `url(${props.image || '/images/bg/work1.jpg'})`};
     min-height: ${props => props.height || '100vh'};
-    min-width: ${props => props.width || '100vw'};
+    width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: center; 
 `;
 
 const FilterOverlay = styled.div`
@@ -27,9 +27,9 @@ const ChildrenWrapper = styled.div`
     z-index: 2; 
 `;
 
-const BackgroundImage = ({ image, height, width, children }) => {
+const BackgroundImage = ({ image, height, children }) => {
     return (
-        <Bg image={image} height={height} width={width}>
+        <Bg image={image} height={height}>
             <FilterOverlay />
             <ChildrenWrapper>
                 {children}

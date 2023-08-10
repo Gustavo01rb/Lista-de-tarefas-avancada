@@ -7,12 +7,12 @@ import styled from 'styled-components';
 
 const SContainer = styled.div`
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    max-height: 100vh;
-    padding: 0 4%;
-
+    min-height: 100vh;
+    padding: 20px 10px;
+    flex-direction: ${props => props.isLogin ? 'row' : 'column'};
     @media (max-width: 768px) {
         flex-direction: column;
     }
@@ -36,15 +36,20 @@ const SWellcomeInfo = styled.div`
         margin-bottom: 30px;
     }
 `;
+
 const Simage = styled.img`
-    width: 80%;
+    width: 30%;
     margin-bottom: 30px;
+    min-width: 300px;
+    max-width: 500px;
 `;
 
 const SignUp = () => {   
     return (
         <SignUpProvider>
-            <BackgroundImage><Content /></BackgroundImage>    
+            <BackgroundImage>
+                <Content />
+            </BackgroundImage>    
         </SignUpProvider>
     );
 }
@@ -52,8 +57,8 @@ const SignUp = () => {
 const Content = () => {
     const { isLogin } = useSignUp();
     return (
-        <SContainer>
-            <WellcomeInfo />
+        <SContainer isLogin={isLogin}>
+            {isLogin ? <WellcomeInfo /> : <Simage src="/images/logo/Horizontal_white_logo.svg" alt="Logo" /> }
             {isLogin ? <LoginForm /> : <RegisterForm />}
         </SContainer>
     )
@@ -62,13 +67,12 @@ const Content = () => {
 const WellcomeInfo = () => {
     return (
         <SWellcomeInfo>
-            <Simage src="/images/logo/Horizontal_white_logo.svg" alt="Logo" />
-            <h1>Bem-vindo à nossa Plataforma de Gerenciamento de Tarefas!</h1>
-            
+            <header>
+                <Simage src="/images/logo/Horizontal_white_logo.svg" alt="Company Logo" />
+                <h1>Bem-vindo à nossa Plataforma de Gerenciamento de Tarefas!</h1>
+            </header>
         </SWellcomeInfo>
     )
 }
-
-
 
 export default SignUp;
