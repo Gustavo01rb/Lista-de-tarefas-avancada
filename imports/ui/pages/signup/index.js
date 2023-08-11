@@ -4,6 +4,7 @@ import BackgroundImage from "../../components/backgroundimage";
 import LoginForm from "./loginform";
 import RegisterForm from "./registerform";
 import styled from 'styled-components';
+import {Meteor} from 'meteor/meteor';
 
 const SContainer = styled.div`
     display: flex;
@@ -11,7 +12,7 @@ const SContainer = styled.div`
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: 20px 10px;
+    padding: 15px 10px;
     flex-direction: ${props => props.isLogin ? 'row' : 'column'};
     @media (max-width: 768px) {
         flex-direction: column;
@@ -38,7 +39,7 @@ const SWellcomeInfo = styled.div`
 `;
 
 const Simage = styled.img`
-    width: 30%;
+    width: 20%;
     margin-bottom: 30px;
     min-width: 300px;
     max-width: 500px;
@@ -70,9 +71,12 @@ const WellcomeInfo = () => {
             <header>
                 <Simage src="/images/logo/Horizontal_white_logo.svg" alt="Company Logo" />
                 <h1>Bem-vindo à nossa Plataforma de Gerenciamento de Tarefas!</h1>
+
+                <button onClick={() => alert(Meteor.userId())}>Cadastre-se</button>
             </header>
         </SWellcomeInfo>
     )
 }
 
 export default SignUp;
+    

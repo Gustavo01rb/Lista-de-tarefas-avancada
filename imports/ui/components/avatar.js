@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Avatar, Button } from "@mui/material";
 import { PhotoCamera } from "@mui/icons-material";
 import styled from "styled-components";
@@ -7,7 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const SContainer = styled.div`
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     border: ${props => props.outilined ? '1px solid #ccc' : 'none'};
@@ -21,16 +21,16 @@ const StyledLabel = styled.label`
     margin-bottom: 10px;
 `;
 const SButtonContainer = styled.div`
-    width: 100%;
+    width: 80%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    padding: 0 10px;
+    padding: 10px 0;
 `;
 
 
-export const AppAvatar = ({ previewSrc, setPreviewSrc,  src, alt, size = 100, sx, outilined, onImageUpload, ...restProps }) => {
+export const AppAvatar = ({ previewSrc, setPreviewSrc,  src, alt, size = 150, sx, outilined, onImageUpload, ...restProps }) => {
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];

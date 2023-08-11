@@ -31,7 +31,7 @@ const Column = styled.div`
 
 const SButtonContainer = styled.div`
     width: 80%;
-    padding-top: 30px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,65 +44,69 @@ const RegisterForm = () => {
 
     return (
         <AppGenericCard title={"Cadastro"}>
-            <SContainer>
-                <Column>
-                    <AppAvatar 
-                        previewSrc={signUpProvider.profileImage}  
-                        setPreviewSrc={signUpProvider.changeProfileImage}
-                    />
-                    <AppTextField 
-                        type='name' 
-                        label="Nome"
-                        value={signUpProvider.nameValue}
-                        onChange={signUpProvider.changeNameValue} 
-                    />
-                    <AppTextField 
-                        type='date' 
-                        label="Data de aniversário" 
-                        InputLabelProps={{ shrink: true }}
-                        value={signUpProvider.dateValue}
-                        onChange={signUpProvider.changeDateValue}
-                    />
-                    <AppTextField 
-                        type='name' 
-                        label="Empresa"
-                        value={signUpProvider.companyValue}
-                        onChange={signUpProvider.changeCompanyValue} 
-                    />
-                </Column>
-                <Column >
-                    <AppTextField 
-                        type='email' 
-                        label="Email" 
-                        value={signUpProvider.emailValue} 
-                        onChange={signUpProvider.changeEmailValue}
-                    />
-                    <AppTextField 
-                        type='password' 
-                        label="Senha"  
-                        value={signUpProvider.passwordValue} 
-                        onChange={signUpProvider.changePasswordValue}
-                    />
-                    <AppTextField 
-                        type='password' 
-                        label="Confirme sua senha"
-                        value={signUpProvider.confirmPasswordValue}
-                        onChange={signUpProvider.changeConfirmPasswordValue}
-                        error={signUpProvider.erroConfrimPassword}
-                        helperText={signUpProvider.erroConfrimPassword ? "As senhas não coincidem" : ""} 
-                    />
-                    <AppSelect 
-                        label="Gênero" 
-                        options={['Masculino', 'Feminino', 'Outro']} 
-                        value={signUpProvider.genreValue}
-                        onChange={signUpProvider.changeGenreValue}
-                    />
-                    <SButtonContainer>
-                        <AppLoadingButton type="submit" loading={signUpProvider.loading}> Cadastrar </AppLoadingButton>
-                        <AppTExtButton onClick={signUpProvider.changeLogin}> Voltar ao login </AppTExtButton>
-                    </SButtonContainer>
-                </Column>
-            </SContainer>
+            <form onSubmit={signUpProvider.registerSubmit}>    
+                <SContainer>
+                    <Column>
+                        <AppAvatar 
+                            previewSrc={signUpProvider.profileImage}  
+                            setPreviewSrc={(value) => signUpProvider.changeValue('profileImage', value)}
+                        />
+                        <AppTextField 
+                            type='name' 
+                            label="Nome"
+                            name='name'
+                            required
+                        />
+                        <AppSelect 
+                            label="Gênero" 
+                            name='genre'
+                            options={['Masculino', 'Feminino', 'Outro']} 
+                        />
+                        
+                    </Column>
+                    <Column >
+                        <AppTextField 
+                            type='date' 
+                            label="Data de aniversário" 
+                            InputLabelProps={{ shrink: true }}
+                            name='date'
+                            required
+                        />
+                        <AppTextField 
+                            type='name' 
+                            label="Empresa"
+                            name='company'
+                            required
+                        />
+                        <AppTextField 
+                            type='email' 
+                            label="Email" 
+                            value={signUpProvider.email} 
+                            onChange={({ target: { value } }) => signUpProvider.changeValue('email',value)}
+                            required
+                        />
+                        <AppTextField 
+                            type='password' 
+                            label="Senha"  
+                            value={signUpProvider.password} 
+                            onChange={({target:{value}}) => signUpProvider.changeValue('password', value)}
+                            required
+                        />
+                        <AppTextField 
+                            type='password' 
+                            label="Confirme sua senha"
+                            onChange={signUpProvider.checkPassword}
+                            error={signUpProvider.erroConfirmPassword}
+                            helperText={signUpProvider.erroConfirmPassword ? "As senhas não coincidem" : ""} 
+                            required
+                        />
+                        <SButtonContainer>
+                            <AppLoadingButton type="submit" loading={signUpProvider.loading}> Cadastrar </AppLoadingButton>
+                            <AppTExtButton onClick={signUpProvider.changeLogin}> Voltar ao login </AppTExtButton>
+                        </SButtonContainer>
+                    </Column>
+                </SContainer>
+            </form>
         </AppGenericCard>
     );
 }

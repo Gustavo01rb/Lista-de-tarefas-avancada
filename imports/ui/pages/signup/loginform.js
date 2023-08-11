@@ -8,7 +8,7 @@ import AppGenericCard from "../../components/genericcard";
 const SFormContainer = styled.div`
     align-self: center;
     padding: 20px 3%;
-`
+`;
 
 const SButtonContainer = styled.div`
     width: 80%;
@@ -19,19 +19,33 @@ const SButtonContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-`
+`;
+
 const SSimpleText = styled.p`
     margin-top: 20px;
-`
+`;
 
 const LoginForm = () => {
-    const {changeLogin, loading,  emailValue, changeEmailValue, passwordValue, changePasswordValue, loginSubmit} = useSignUp();
+    const { email, password, changeValue, loginSubmit, loading, changeLogin } = useSignUp();
+
     return (
         <form onSubmit={loginSubmit}>
             <AppGenericCard title='Entrar'>
                 <SFormContainer>
-                    <AppTextField label="Email" type="email" value={emailValue} onChange={changeEmailValue}    />
-                    <AppTextField label="Senha" type="password"  value={passwordValue} onChange={changePasswordValue} />
+                    <AppTextField 
+                        label="Email" 
+                        type="email" 
+                        value={email} 
+                        onChange={({target:{value}}) => changeValue('email', value)}    
+                        required
+                    />
+                    <AppTextField 
+                        label="Senha" 
+                        type="password"  
+                        value={password} 
+                        onChange={({target:{value}}) => changeValue('password', value)} 
+                        required
+                    />
                 </SFormContainer>
                 <SButtonContainer>
                     <AppLoadingButton type="submit" loading={loading}> Entrar </AppLoadingButton>
@@ -40,7 +54,7 @@ const LoginForm = () => {
                 </SButtonContainer>
             </AppGenericCard>
         </form>
-    )
-}
+    );
+};
 
 export default LoginForm;

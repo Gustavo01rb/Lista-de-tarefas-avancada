@@ -19,14 +19,15 @@ const STitle = styled.h1`
     text-align: center;
 `;
 
-const AppGenericCard = ({ children, title, ...props }) => {
+const AppGenericCard = ({ children, title, backgroundColor, padding, borderRadius, border, titleFontSize, titleMarginTop }) => {
     return (
-        <SContainer {...props}>
-            {title && <STitle {...props}>{title}</STitle>}
+        <SContainer backgroundColor={backgroundColor} padding={padding} borderRadius={borderRadius} border={border}>
+            {title && <STitle titleFontSize={titleFontSize} titleMarginTop={titleMarginTop}>{title}</STitle>}
             {children}
         </SContainer>
     );
 };
+
 
 AppGenericCard.defaultProps = {
     backgroundColor: "#ffffff",
