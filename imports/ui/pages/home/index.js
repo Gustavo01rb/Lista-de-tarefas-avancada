@@ -1,28 +1,21 @@
-import React from 'react';
-import { Meteor } from 'meteor/meteor';
+import React from "react";
+import TemplateDrawer from "../../template/drawer/templatedrawer";
+import styled from 'styled-components';
+
+const SContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: red;
+`
 
 const Home = () => {
-  const logout = () => Meteor.logout();
-
-  const user = Meteor.user();
-
-  if (!user) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <div>
-      <h1>Home</h1>
-      <p>{user.profile.name}</p>
-      <img src={user.profile.profileImage} alt="Profile" />
-      <p>{user.profile.company}</p>
-      <p>{user.profile.date}</p>
-      <p>{JSON.stringify(user.profile)}</p>
-      <div className="user" onClick={logout}>
-        🚪
-      </div>
-    </div>
+    <TemplateDrawer indexPage={0}>
+      <SContainer>
+        <h1>Home</h1>
+      </SContainer>
+    </TemplateDrawer>
   );
-};
+}
 
 export default Home;
