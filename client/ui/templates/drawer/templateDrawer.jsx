@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
-import AppColors from '../../styles/appcolors';
+import AppColors from '../../styles/appColors';
 import DrawerHeader from './header';
 import OptionsList from './options';
 import {data} from './data';

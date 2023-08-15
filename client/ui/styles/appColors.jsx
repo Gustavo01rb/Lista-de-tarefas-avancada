@@ -4,6 +4,7 @@ class AppColors{
     static primaryDark = '#203054';
     static primaryDark = '#203054';
     static onPrimary = '#ffffff';
+    static black = '#000000';
 
 }
 

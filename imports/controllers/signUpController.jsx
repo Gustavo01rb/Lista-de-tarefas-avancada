@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { Meteor } from "meteor/meteor";
 import { Accounts } from 'meteor/accounts-base';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpContext = createContext();
 
@@ -16,7 +16,7 @@ const initialState = {
   erroConfirmPassword: false,
 };
 
-export const SignUpProvider = ({ children }) => {
+export const SignUpController = ({ children }) => {
   const [formData, setFormData] = useState(initialState);
   const navigate = useNavigate();
 
@@ -91,4 +91,4 @@ export const SignUpProvider = ({ children }) => {
   );
 };
 
-export default SignUpProvider;
+export default SignUpController;
