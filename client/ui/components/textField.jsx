@@ -5,7 +5,16 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-const AppTextField = ({ label, type, name, value, onChange, error, helperText, ...props }) => {
+const AppTextField = ({ 
+    label, 
+    type, 
+    name, 
+    value, 
+    onChange, 
+    error, 
+    multiline = false,
+    helperText, 
+    ...props }) => {
     const [showPassword, setShowPassword] = React.useState(false);
 
     const handleTogglePasswordVisibility = () => {
@@ -25,11 +34,19 @@ const AppTextField = ({ label, type, name, value, onChange, error, helperText, .
             onChange={onChange}
             error={error}
             helperText={helperText}
+            multiline = {multiline}
             size='small'
+            rows = {multiline ? 5 : 1}
             style={{
                 width: '100%',
                 marginBottom: '20px',
+                
             }}
+            InputLabelProps={
+                type === 'date'
+                ?{ shrink: true}
+                :{}
+            }
             InputProps={
                 type === 'password'
                     ? {

@@ -67,7 +67,6 @@ const RegisterForm = () => {
             <AppTextField 
               type='date' 
               label="Data de aniversário" 
-              InputLabelProps={{ shrink: true }}
               name='date'
               required
             />
