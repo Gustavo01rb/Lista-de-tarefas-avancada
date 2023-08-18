@@ -36,16 +36,7 @@ export const EditTaskController = ({ children }) => {
         });
     };
 
-    const closeAlert = () => {
-        setState(prevState => ({
-            ...prevState,
-            showAlert: false,
-        }));
-
-        navigate('/tasks');
-    };
-
-    const onRegisterSubmit = async (e) => {
+    const onRegisterSubmit = (e) => {
         e.preventDefault();
         setState(prevState => ({ ...prevState, loading: true }));
 
@@ -58,13 +49,21 @@ export const EditTaskController = ({ children }) => {
                 status: e.target.status.value,
             });
 
-            await Meteor.call('tasks.insert', task);
-            openAlert('Tarefa cadastrada', 'Tarefa cadastrada com sucesso!', () => {
+            Meteor.call('tasks.insert', task.toMap());
+            
+            openAlert(
+              'Tarefa cadastrada', 
+              'Tarefa cadastrada com sucesso!', 
+              () => {
                 setAlertState(prevState => ({ ...prevState, show: false }));
                 navigate('/tasks');  
-            });
+              }
+            );
         } catch (e) {
-            openAlert('Erro ao cadastrar tarefa', e.message, () => {setAlertState(prevState => ({ ...prevState, show: false }))});
+            openAlert(
+              'Erro ao cadastrar tarefa', 
+              e.message, 
+              () => {setAlertState(prevState => ({ ...prevState, show: false }))});
         }
 
         setState(prevState => ({ ...prevState, loading: false }));

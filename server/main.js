@@ -1,10 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import 'meteor/accounts-base';
-import '../imports/api/tasksMethod.js'
-import '../imports/api/tasksPublication.js'
-import '../imports/database/taskCollection.js'
-
-
+import '../imports/api/tasksMethod'
+import '../imports/api/tasksPublication'
+import '../imports/database/taskCollection'
 
 Meteor.startup(async () => {
 

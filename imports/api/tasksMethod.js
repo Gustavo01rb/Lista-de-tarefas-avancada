@@ -1,17 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { TaskCollection } from '../database/taskCollection';
-import Task from '../models/task'; 
 
 Meteor.methods({
-  'tasks.insert'(task) {
-    check(task, Task);
-
-    if (!this.userId) {
-      throw new Meteor.Error('Not authorized.');
-    }
-
-    TaskCollection.insert(task.toMap());
+  'tasks.insert': function (task) {
+    try {
+      if (!this.userId) throw new Meteor.Error('Not authorized.');
+        TaskCollection.insert(task);
+      } catch (e) {
+        throw new Meteor.Error(e.message);
+      }
   },
 
   'tasks.remove'(taskId) {
