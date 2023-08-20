@@ -12,8 +12,6 @@ const SContainer = styled(Box)(({
     display: 'flex',
     flexDirection: 'column',
     boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-    webkitBoxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-    mozBoxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
     border: border,
     backgroundColor: backgroundColor,
     padding: padding,

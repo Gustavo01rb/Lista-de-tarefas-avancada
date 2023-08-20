@@ -3,10 +3,12 @@ import { Avatar, Button } from "@mui/material";
 import { PhotoCamera } from "@mui/icons-material";
 import { styled } from "@mui/system";
 import DeleteIcon from "@mui/icons-material/Delete";
+import AppColors from "../styles/appColors";
 
 const SContainer = styled('div')(({ outilined }) => ({
   width: '100%',
   display: 'flex',
+  maxWidth: '400px',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
@@ -18,7 +20,6 @@ const SContainer = styled('div')(({ outilined }) => ({
 
 const StyledLabel = styled('label')({
   display: 'block',
-  cursor: 'pointer',
   marginBottom: '10px',
 });
 
@@ -38,6 +39,7 @@ export const AppAvatar = ({
   alt,
   size = 150,
   sx,
+  disabled = false,
   outilined,
   onImageUpload,
   ...restProps
@@ -70,10 +72,17 @@ export const AppAvatar = ({
       <SButtonContainer>
         <StyledLabel>
           <Button
-            style={{ display: "flex", justifyContent: "left" }}
+            style={{ 
+              display: "flex", 
+              justifyContent: "left", 
+              backgroundColor: disabled ? "#ccc" : AppColors.primary,
+              color: disabled ? "#000" :  AppColors.onPrimary,
+              opacity: disabled ? 0.4 : 1,
+            }}
             startIcon={<PhotoCamera />}
             component="span"
             variant="contained"
+            disabled={disabled}
           >
             Carregar Foto
           </Button>
@@ -88,9 +97,11 @@ export const AppAvatar = ({
           style={{
             display: "flex",
             justifyContent: "left",
-            backgroundColor: "red",
-            color: "white",
+            backgroundColor: disabled ? "#ccc" : "red",
+            color: disabled ? "#000" :  "white",
+            opacity: disabled ? 0.4 : 1,
           }}
+          disabled={disabled}
           startIcon={<DeleteIcon />}
           component="span"
           variant="contained"

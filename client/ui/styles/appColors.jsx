@@ -5,6 +5,8 @@ class AppColors{
     static primaryDark = '#203054';
     static onPrimary = '#ffffff';
     static black = '#000000';
+    static success = 'green';
+    static error = 'red';
 
 }
 

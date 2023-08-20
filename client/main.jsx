@@ -2,7 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createRoot } from 'react-dom/client'; 
 import GlobalStyles from './ui/styles/global';
-import AppRoutes from '../imports/routes/routes';
+import AppRoutes from './routes/routes';
 
 Meteor.startup(() => {
   const root = createRoot(document.getElementById('react-target'));

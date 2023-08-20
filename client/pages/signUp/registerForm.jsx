@@ -1,33 +1,13 @@
 import React from "react";
-import { styled } from "@mui/system";
-import { Box } from "@mui/system";
+import { styled, Box } from "@mui/system";
 import AppGenericCard from "../../ui/components/genericCard";
 import AppTextField from "../../ui/components/textField";
 import AppSelect from "../../ui/components/select";
 import { AppLoadingButton, AppTExtButton } from "../../ui/components/buttons";
 import { useSignUp} from "../../../imports/controllers/signUpController";
 import { AppAvatar } from "../../ui/components/avatar";
+import ResponsiveColumns from "../../ui/templates/responsiveColumns/responsiveColumns";
 
-
-const SContainer = styled(Box)({
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'flex-start',
-  justifyContent: 'space-evenly',
-  padding: '10px 0',
-  '@media (max-width: 768px)': {
-    flexDirection: 'column',
-  },
-});
-
-const Column = styled(Box)({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '50%',
-  padding: '0 22px',
-  alignItems: 'flex-start',
-  minWidth: '350px',
-});
 
 const SButtonContainer = styled(Box)({
   width: '80%',
@@ -45,8 +25,12 @@ const RegisterForm = () => {
   return (
     <AppGenericCard title={"Cadastro"}>
       <form onSubmit={signUpProvider.registerSubmit}>    
-        <SContainer>
-          <Column>
+        <ResponsiveColumns
+          padding = '10px 0'
+          paddingColumn = '0 22px'
+          minWidthColumn = '350px'
+        >
+          <>
             <AppAvatar 
               previewSrc={signUpProvider.profileImage}  
               setPreviewSrc={(value) => signUpProvider.changeValue('profileImage', value)}
@@ -62,8 +46,8 @@ const RegisterForm = () => {
               name='genre'
               options={['Masculino', 'Feminino', 'Outro']} 
             />
-          </Column>
-          <Column>
+          </>
+          <>
             <AppTextField 
               type='date' 
               label="Data de aniversário" 
@@ -102,8 +86,8 @@ const RegisterForm = () => {
               <AppLoadingButton type="submit" loading={signUpProvider.loading}> Cadastrar </AppLoadingButton>
               <AppTExtButton onClick={signUpProvider.changeLogin}> Voltar ao login </AppTExtButton>
             </SButtonContainer>
-          </Column>
-        </SContainer>
+          </>
+        </ResponsiveColumns>
       </form>
     </AppGenericCard>
   );
