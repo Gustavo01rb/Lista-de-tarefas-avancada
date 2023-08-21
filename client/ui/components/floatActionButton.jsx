@@ -28,7 +28,7 @@ const FloatActionButtonStyle = styled('div')(({
     },
 }));
 
-const FloatActionButton = ({ iconColor, onTap, ...props }) => { 
+const FloatActionButton = ({ iconColor, children, onTap, ...props }) => { 
     const handleClick = () => {
         if (onTap) {
             onTap();
@@ -37,11 +37,13 @@ const FloatActionButton = ({ iconColor, onTap, ...props }) => {
 
     return (
         <FloatActionButtonStyle onClick={handleClick} {...props}>
-            <AddIcon sx={{
-                color: iconColor || AppColors.onPrimary,
-                fontSize: '30px',
-                alignSelf: 'center',
-            }}/>
+            {
+                children ? children : <AddIcon sx={{
+                    color: iconColor || AppColors.onPrimary,
+                    fontSize: '30px',
+                    alignSelf: 'center',
+                }} />
+            }
         </FloatActionButtonStyle>
     );
 };

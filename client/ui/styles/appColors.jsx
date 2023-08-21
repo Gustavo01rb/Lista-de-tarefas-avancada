@@ -8,6 +8,10 @@ class AppColors{
     static success = 'green';
     static error = 'red';
 
+    static finishedTask = '#098203';
+    static notStartedTask = '#823F10';
+    static inProgressTask = '#201082';
+
 }
 
 export default AppColors;

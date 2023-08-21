@@ -66,7 +66,7 @@ function TemplateDrawer({children, indexPage}) {
         <OptionsList data={data} open={open} indexPage={indexPage}/>
         
       </SDrawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, position: 'relative', minHeight:'100vh' }}>
             {children}
       </Box>
     </Box>

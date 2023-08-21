@@ -7,7 +7,16 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Typography } from "@mui/material";
 
-const SimpleDialog = ({ open, onClose, title, message }) => {
+const SimpleDialog = ({ 
+    open, 
+    onClose, 
+    title, 
+    message,
+    buttonText = 'Fechar',
+    onButtonPressed,
+    cancelButton = false,
+    cancelButtonText = 'Cancelar',
+}) => {
     return(
         <Dialog
             open={open}
@@ -22,8 +31,12 @@ const SimpleDialog = ({ open, onClose, title, message }) => {
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={onClose} autoFocus>
-                    <Typography variant="button">Fechar</Typography>
+                {cancelButton && <Button variant="text" onClick={onClose} autoFocus>
+                    <Typography variant="button">{cancelButtonText}</Typography>
+                </Button>
+                }
+                <Button variant={cancelButton ? 'contained' : 'text'} onClick={onButtonPressed ? onButtonPressed : onClose} autoFocus>
+                    <Typography variant="button">{buttonText}</Typography>
                 </Button>
             </DialogActions>
         </Dialog>

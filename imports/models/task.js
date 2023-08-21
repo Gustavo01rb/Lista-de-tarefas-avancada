@@ -1,7 +1,7 @@
 import {Meteor} from 'meteor/meteor';
 
 class Task {
-    constructor({id, name, description, date, status, personal, dateCreated, creatorId, creadorInfo}){
+    constructor({id, name, description, date, status, personal, dateCreated, creatorId}){
         this.id = id;
         this.name = name;
         this.description = description;
@@ -10,12 +10,6 @@ class Task {
         this.personal = personal;
         this.dateCreated = dateCreated || new Date();
         this.creatorId = creatorId || Meteor.userId();
-        this.creatorInfo = creadorInfo || {
-            name: Meteor.user().profile.name,
-            email: Meteor.user().emails[0].address,
-            profileImage: Meteor.user().profile.profileImage
-        };
-
     }
 
     toMap(){
@@ -28,7 +22,6 @@ class Task {
             dateCreated: this.dateCreated,
             personal: this.personal,
             creatorId: this.creatorId,
-            creatorInfo: this.creatorInfo
         }
     }
 }

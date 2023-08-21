@@ -2,7 +2,6 @@ import React from "react";
 import {styled, Box} from "@mui/system";
 import Typography from '@mui/material/Typography';
 import ResponsiveColumns from "../../ui/templates/responsiveColumns/responsiveColumns";
-import { AppAvatar } from "../../ui/components/avatar";
 import UserProfileInfo from "./userProfile";
 import SensitiveInfo from "./sensitiveInfo";
 

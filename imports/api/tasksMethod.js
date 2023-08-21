@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
 import { TaskCollection } from '../database/taskCollection';
 
 Meteor.methods({
@@ -12,40 +11,33 @@ Meteor.methods({
       }
   },
 
-  'tasks.remove'(taskId) {
-    check(taskId, String);
-
-    if (!this.userId) {
-      throw new Meteor.Error('Not authorized.');
+  'tasks.remove': function(taskId) {
+    try{  
+      if (!this.userId) throw new Meteor.Error('Você não tem autorização para concluir essa ação.');
+      const task = TaskCollection.findOne({ _id: taskId, creatorId: this.userId });
+      if (!task) throw new Meteor.Error('Acesso negado.');
+      TaskCollection.remove(taskId);
+    }catch(e){
+      throw new Meteor.Error(e.message);
     }
-
-    const task = TasksCollection.findOne({ _id: taskId, userId: this.userId });
-
-    if (!task) {
-      throw new Meteor.Error('Access denied.');
-    }
-
-    TasksCollection.remove(taskId);
   },
 
-  'tasks.setIsChecked'(taskId, isChecked) {
-    check(taskId, String);
-    check(isChecked, Boolean);
-
-    if (!this.userId) {
-      throw new Meteor.Error('Not authorized.');
-    }
-
-    const task = TasksCollection.findOne({ _id: taskId, userId: this.userId });
+  'tasks.editTask': function(taskId, taskToEdit) {
+    try{
+      if (!this.userId) throw new Meteor.Error('Not authorized.');
+    const task = TaskCollection.findOne({ _id: taskId, creatorId: this.userId });
 
     if (!task) {
       throw new Meteor.Error('Access denied.');
     }
 
-    TasksCollection.update(taskId, {
-      $set: {
-        isChecked,
-      },
+    TaskCollection.update(taskId, {
+      $set: taskToEdit
     });
+    }catch(e){
+      console.log(e.message);
+      throw new Meteor.Error(e.message);
+    }
+    
   },
 });

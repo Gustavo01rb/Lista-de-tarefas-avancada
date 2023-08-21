@@ -2,24 +2,39 @@ import React from "react";
 import TemplateDrawer from "../../ui/templates/drawer/templateDrawer";
 import {Link} from "react-router-dom";
 import FloatActionButton from "../../ui/components/floatActionButton";
-import {TaskCollection} from "../../../imports/database/taskCollection";
-import { useTracker } from 'meteor/react-meteor-data';
-import {Meteor} from "meteor/meteor";
+import { TaskController, useTask } from "../../../imports/controllers/taskController";
+import TaskList from "./taskList";
+import Typography from '@mui/material/Typography';
+import AppLoading from "../../ui/components/loading";
+import AppError from "../../ui/components/error";
 
 const TasksPage = () => {
-    Meteor.subscribe('tasks');
-    const tasks = useTracker(() => TaskCollection.find().fetch());
-    console.log(tasks);
-
     return (
         <TemplateDrawer indexPage={1}>
-            <h1>TasksPage</h1>
-            <p>{JSON.stringify(tasks)}</p>
+            <Typography variant="h4" fontWeight='bold'>Tarefas</Typography>
+            <TaskController>
+                <Content/>
+            </TaskController>
             <Link to="/tasks/new">
                 <FloatActionButton/>
             </Link>
         </TemplateDrawer>
     );
 }
+
+const Content = () => {
+    const {loading, loadingError,titleError,messageError} = useTask();
+    return (
+        <>
+            {loading 
+                ? <AppLoading abosotuteCenter={true} text={'Carregando mensagens...'}/> 
+                : loadingError
+                    ? <AppError title={titleError} message={messageError} />
+                    : <TaskList/>
+            }
+        </>
+    );
+}
+
 
 export default TasksPage;

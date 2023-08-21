@@ -5,7 +5,7 @@ import AppTextField from "../../ui/components/textField";
 import AppSelect from "../../ui/components/select";
 import AppCheckBox from "../../ui/components/checkBox";
 import { AppLoadingButton } from "../../ui/components/buttons";
-import {EditTaskController, useEditTask} from "../../../imports/controllers/editTaskController";
+import {AddTaskController, addTask} from "../../../imports/controllers/addTaskController";
 
 
 
@@ -43,14 +43,14 @@ const SButton = styled(AppLoadingButton)({
 
 const AddTaskPage = () => {
     return (
-        <EditTaskController>
+        <AddTaskController>
             <Content />
-        </EditTaskController>
+        </AddTaskController>
     );
 };
 
 const Content = () => {
-    const { loading, onRegisterSubmit, personalChecked, changePersonalChecked } = useEditTask();
+    const { loading, onRegisterSubmit, personalChecked, changePersonalChecked } = addTask();
     return (
         <SContainer>
             <Simage src="/images/logo/Horizontal_black_logo.svg" alt="Logo" />

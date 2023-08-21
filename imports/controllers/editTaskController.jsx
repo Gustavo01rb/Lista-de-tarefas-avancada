@@ -1,16 +1,20 @@
 import React, { createContext, useContext, useState } from "react";
-import Task from '../models/task';
+import {useTracker} from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
-import { useNavigate } from 'react-router-dom';  
+import {TaskCollection} from '../database/taskCollection';
 import SimpleDialog from "../../client/ui/components/simpleDialog";
 
 const EditTaskContext = createContext();
-
 export const useEditTask = () => useContext(EditTaskContext);
 
 const initialState = {
-    loading: false,
-    personalChecked: false,
+    loading: true,
+    error: false,
+    task: {},
+    edit: false,
+    errorTitle: '',
+    errorMessage: '',
+    user: {}
 };
 
 const initialStateAlert = {
@@ -20,75 +24,91 @@ const initialStateAlert = {
     message: '',
 }
 
-export const EditTaskController = ({ children }) => {
-    const navigate = useNavigate();  
-
+export const EditTaskController = ({taskId,  children }) => {
     const [state, setState] = useState(initialState);
-    const [alertState, setAlertState] = useState(initialStateAlert);
 
-    const changePersonalChecked = () => setState(prevState => ({ ...prevState, personalChecked: !prevState.personalChecked }));
-    const openAlert = (title, message, onClose) => {
-        setAlertState({
-            show: true,
-            onClose: onClose,
-            title: title,
-            message: message,
+    const onFloatActionButtonTap = () => {
+        setState(prevState => ({
+            ...prevState,
+            edit: !prevState.edit,
+        }));
+    }
+    const saveTaks = () => {
+        try{
+        Meteor.subscribe('tasks');
+        Meteor.call('tasks.editTask', state.task[0]._id, state.task[0] , (error, result) => {
+            if(error){
+                console.log("error", error);    
+        }});
+        onFloatActionButtonTap();
+        }catch(e){
+            console.log(e);
+            onFloatActionButtonTap();
+        }
+    }
+
+    const editTask = (field, event) => {
+        setState((prevState) => {
+            const updatedTask = [...prevState.task];
+            updatedTask[0] = {
+                ...updatedTask[0],
+                [field]: event.target.value
+            };
+            return {
+                ...prevState,
+                task: updatedTask
+            };
         });
     };
 
-    const onRegisterSubmit = (e) => {
-        e.preventDefault();
-        setState(prevState => ({ ...prevState, loading: true }));
 
-        try {
-            const task = new Task({
-                name: e.target.name.value,
-                description: e.target.description.value,
-                date: e.target.date.value,
-                personal: state.personalChecked,
-                status: e.target.status.value,
-            });
+    useTracker(() => {
+        try{
+            if (!taskId) throw new Meteor.Error('Não encontrado.','As informações solicitadas não existem ou não foram encontradas.');
+            if (!Meteor.userId()) throw new Meteor.Error('Não autorizado.','Você não está autorizado a realizar esta ação.');
+            const subscription = Meteor.subscribe('tasks');
+            if (!subscription.ready()) return;
+    
+            const task = TaskCollection.find({_id: taskId}).fetch();
+            if (!task) throw new Meteor.Error('Não encontrado.','As informações solicitadas não existem ou não foram encontradas.');
+            setState(prevState => ({
+                ...prevState,
+                task: task,
+            }));
 
-            Meteor.call('tasks.insert', task.toMap());
-            
-            openAlert(
-              'Tarefa cadastrada', 
-              'Tarefa cadastrada com sucesso!', 
-              () => {
-                setAlertState(prevState => ({ ...prevState, show: false }));
-                navigate('/tasks');  
-              }
-            );
-        } catch (e) {
-            openAlert(
-              'Erro ao cadastrar tarefa', 
-              e.message, 
-              () => {setAlertState(prevState => ({ ...prevState, show: false }))});
+            const userSubscription = Meteor.subscribe('userData', task[0].creatorId);
+            if (!userSubscription.ready()) return;
+
+            const user = Meteor.users.findOne({_id: task[0].creatorId});
+            if (!user) throw new Meteor.Error('Não encontrado.','As informações solicitadas não existem ou não foram encontradas.');
+            setState(prevState => ({
+                ...prevState,
+                loading: false,
+                user: user,
+            }));
+
+
+        }catch(error){
+            setState(prevState => ({
+                ...prevState,
+                loading: false,
+                error: true,
+                errorTitle: error.error,
+                errorMessage: error.reason,
+            }));
         }
+    }, [taskId]);
+    
 
-        setState(prevState => ({ ...prevState, loading: false }));
-    }
-
-    const contextValue = {
+    const contextValue ={
         ...state,
-        onRegisterSubmit,
-        changePersonalChecked,
-    };
-
+        onFloatActionButtonTap,
+        editTask,
+        saveTaks
+    }
     return (
-        <>
-            <EditTaskContext.Provider value={contextValue}>
-                {children}
-            </EditTaskContext.Provider>
-            <SimpleDialog 
-                open={alertState.show}
-                onClose={alertState.onClose}
-                title={alertState.title}
-                message={alertState.message}
-            />
-
-        </>
+        <EditTaskContext.Provider value={contextValue}>
+            {children}
+        </EditTaskContext.Provider>
     );
-};
-
-export default EditTaskController;
+}
