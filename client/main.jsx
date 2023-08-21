@@ -1,16 +1,13 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createRoot } from 'react-dom/client'; 
-import GlobalStyles from './ui/styles/global';
-import AppRoutes from './routes/routes';
+import AppRoutes from '../imports/routes/routes'
 
 Meteor.startup(() => {
   const root = createRoot(document.getElementById('react-target'));
   root.render(
     <>
-      <GlobalStyles >
-        <AppRoutes />
-      </GlobalStyles>
+      <AppRoutes />
     </>
   );
 });
