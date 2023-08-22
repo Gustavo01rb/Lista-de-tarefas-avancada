@@ -88,14 +88,14 @@ const Form = () => {
                             required
                         />
                         <SContainerButton>
-                        <AppLoadingButton 
-                            loading = {loading}
-                            type = 'submit'
-                        >Entrar</AppLoadingButton>
-                        <Button 
-                            variant='text'
-                            onClick={changeLogin} 
-                        >Cadastre-se</Button>
+                            <AppLoadingButton 
+                                loading = {loading}
+                                type = 'submit'
+                            >Entrar</AppLoadingButton>
+                            <Button 
+                                variant='text'
+                                onClick={changeLogin} 
+                            >Cadastre-se</Button>
                         </SContainerButton>
                     </SForm>
                 </form>

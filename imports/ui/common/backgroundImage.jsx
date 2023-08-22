@@ -5,8 +5,8 @@ import { Box } from "@mui/material";
 const SContainer = styled(Box)(({
     height, width, imagepath
 })=>({
-    height: height,
     width: width,
+    minHeight: height,
     backgroundImage: `url(${imagepath})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -15,29 +15,24 @@ const SContainer = styled(Box)(({
 }));
 
 const SFilter = styled(Box)(({
-    width, height, filter
+    width, filter
 }) => ({
+    minHeight: '100vh',
     position: 'absolute',
     top: 0,
     left: 0,
     width: width,
-    height: height,
     backgroundColor: filter,
-    zIndex: 1,
-}));
-
-const SContent = styled(Box)(({}) => ({
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    overflow: 'hidden',
-    zIndex: 2,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
 }));
 
 const AppBackgroundImage = ({
     imagepath = '/images/bg/work1.jpg',
     height = '100vh',
-    width = '100vw',
+    width = '100%',
     filter = 'rgba(32, 48, 84, 0.8)',
     children
 }) => {
@@ -48,13 +43,11 @@ const AppBackgroundImage = ({
             imagepath={imagepath}
         >
             <SFilter
-                height={height}
                 width={width}
                 filter={filter}
-            />
-            <SContent>
+            >
                 {children}
-            </SContent>
+            </SFilter>
         </SContainer>
     );
 }

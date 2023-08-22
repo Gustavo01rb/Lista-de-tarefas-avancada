@@ -5,7 +5,7 @@ import {Box} from "@mui/material";
 const Simg = styled('img')({
     width: '100%',
     minWidth: '200px',
-    maxWidth: '1200px',
+    maxWidth: '1000px',
 });
 
 const AppLogoImage = ({variant = 0, ...props}) => {
