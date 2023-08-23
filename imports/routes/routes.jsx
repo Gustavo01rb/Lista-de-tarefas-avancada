@@ -5,7 +5,7 @@ import {Meteor} from "meteor/meteor";
 import {useTracker} from "meteor/react-meteor-data";
 
 const AppRoutes = () => {
-    const user = useTracker(() => Meteor.user());
+    const user = useTracker(() => Meteor.userId());
     return (
         <BrowserRouter>
             <MainRoutes user={user}/>

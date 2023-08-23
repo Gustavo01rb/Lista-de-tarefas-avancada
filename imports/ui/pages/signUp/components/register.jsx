@@ -20,7 +20,10 @@ const SContainer = styled(Box)(({theme}) => ({
     justifyContent: 'space-evenly',
     maxWidth: '1200px',
     padding: `${theme.spacing(3)} ${theme.spacing(5)}`,
-    gap: theme.spacing(3)
+    gap: theme.spacing(3),
+    [theme.breakpoints.down('sm')]: {
+        padding: `${theme.spacing(2)} ${theme.spacing(5)}`,
+    }
 }));
 
 const SColumn = styled(Box)(({theme}) => ({
@@ -41,6 +44,9 @@ const SContainerButton = styled(Box)(({theme}) => ({
     padding: `0 ${theme.spacing(10)}`,
     marginTop: theme.spacing(2),
     gap: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
+        padding: `0 ${theme.spacing(2)}`,
+    }
 }));
 
 const RegisterComponent = () => {
@@ -48,7 +54,7 @@ const RegisterComponent = () => {
         const { loading, regiterFields, uploadAvatar, changeLoginFields, loginFields, checkPassword, changeLogin, registerSubmit } = useSignUp();
     return (
         <SContainer theme={theme}>
-            <AppLogoImage variant={0} sx={{ width: '40%', maxWidth: '350px' }} />
+            <AppLogoImage variant={0} sx={{ width: '50%', maxWidth: '350px', align: 'center' }} />
             <AppGenericCard title = 'Cadastrar'>
                 <form onSubmit={registerSubmit}>
                     <ResponsiveColumns spacingmobile={theme.spacing(3)} align={'flex-start'} >

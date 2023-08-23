@@ -1,12 +1,12 @@
 import React from "react";
 import TemplateDrawer from "../../templates/drawer/templateDrawer";
 
-const HomePage = () => {
+const TasksPage = () => {
     return (
-        <TemplateDrawer indexpage={0}>
-            <h1>Home</h1>   
+        <TemplateDrawer indexpage={1}>
+            <h1>Task</h1>   
         </TemplateDrawer>
     );
 }
 
-export default HomePage;
+export default TasksPage;
