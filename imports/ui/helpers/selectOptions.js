@@ -7,3 +7,13 @@ export class GenderOptions{
         return ['Feminino', 'Masculino', 'Outro']
     }
 }
+
+export class StatusTaskOptions{
+    static notStarted = 'Cadastrada';
+    static inProgress = 'Em Progresso';
+    static done = 'Concluída';
+
+    static getOptions(){
+        return ['Cadastrada', 'Em Progresso', 'Concluída']
+    }
+}

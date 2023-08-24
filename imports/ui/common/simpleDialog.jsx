@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Typography } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
 import CancelIcon from '@mui/icons-material/Cancel';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const SimpleDialog = ({ 
     open, 
@@ -27,7 +28,7 @@ const SimpleDialog = ({
             onClose={onClose}
         >
             <DialogTitle 
-                color = {variant === 'error' ? 'error' : ''}
+                color = {variant }
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
@@ -37,6 +38,7 @@ const SimpleDialog = ({
                 }}
             > 
                 {variant === 'error' && <CancelIcon />}
+                {variant === 'success' && <CheckCircleIcon />}
                 {title} 
             </DialogTitle>
             <DialogContent sx={{marginLeft: theme.spacing(3)}}>
