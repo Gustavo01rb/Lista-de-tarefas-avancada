@@ -31,7 +31,7 @@ const TasksPage = () => {
             <ViewTaskProvider>
                 <Typography variant="h4" fontFamily='cursive' fontWeight='bold' > Tarefas </Typography>
                 <ResponsiveColumns
-                    reversemobile={true}
+                    reversemobile={'true'}
                     align={'flex-start'}
                     justify={'flex-start'}
                     padding={`${theme.spacing(4)} 0`}

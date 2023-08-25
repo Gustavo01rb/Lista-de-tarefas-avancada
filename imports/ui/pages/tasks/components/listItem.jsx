@@ -35,7 +35,7 @@ const TaskListItem = ({task, onDeleteTaskPressed}) => {
                 return theme.palette.notStartedTask;
             case StatusTaskOptions.inProgress:
                 return theme.palette.inProgressTask;
-            case StatusTaskOptions.completed:
+            case StatusTaskOptions.done:
                 return theme.palette.finishedTask;
             default:
                 return theme.palette.error.main;

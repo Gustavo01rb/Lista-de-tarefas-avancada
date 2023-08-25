@@ -1,9 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { TaskCollection } from '../database/taskCollection';
-import { check } from 'meteor/check';
 
 Meteor.publish('tasks', function () {
-  if (!this.userId) return this.ready();
+  if (!this.userId) throw new Meteor.Error('Acesso não autorizado.');
   return TaskCollection.find({
     $or: [
       { userId: this.userId },

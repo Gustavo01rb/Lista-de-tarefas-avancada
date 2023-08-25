@@ -146,7 +146,7 @@ export const ViewTaskProvider = ({ children }) => {
 
 
             tasks.forEach(task => {
-                console.log(taskFilters.personalFilter, taskFilters.visibilityFilter);
+                Meteor.subscribe('userData');
                 const user = Meteor.users.findOne(task.userId);
                 task.userInfo = {
                     name: user.profile.name,
@@ -154,7 +154,7 @@ export const ViewTaskProvider = ({ children }) => {
             });
             setState({...state, tasks: tasks, loading: false});
         }catch(error){
-            setState({...state, error: error.message});
+            setState({...state, error: error.message, loading: false});
         }
     }, [state.textValue, taskFilters.personalFilter, taskFilters.visibilityFilter])
 

@@ -13,13 +13,13 @@ const LoadingText = styled('span')({
   marginLeft: '10px',
 });
 
-const AppLoadingButton = ({ children, loading, startIcon, ...props }) => {
+const AppLoadingButton = ({ children, disabled, loading, startIcon, ...props }) => {
   return (
     <Button
       {...props}
       variant="contained"
       color="primary"
-      disabled={loading}
+      disabled={loading || disabled}
       startIcon={loading ? '' : startIcon}
     >
       {loading ? (

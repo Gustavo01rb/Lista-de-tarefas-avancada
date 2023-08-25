@@ -19,7 +19,7 @@ const theme = createTheme({
       contrastText: '#ffffff',
     },
     warning: {
-      main: '#FAA900',
+      main: '#FAA900', 
       contrastText: '#ffffff',
     },
     notStartedTask:{
@@ -31,7 +31,7 @@ const theme = createTheme({
       contrastText: '#ffffff',
     },
     finishedTask:{
-      main: '#00FF00',
+      main: '#098203',
       contrastText: '#ffffff',
     },
   },
