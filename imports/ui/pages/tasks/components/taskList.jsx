@@ -9,6 +9,7 @@ import EmptyTask from "./emptyTask";
 import List from "@mui/material/List";
 import TaskListItem from "./listItem";
 import CircularProgress from '@mui/material/CircularProgress';
+import Pagination from '@mui/material/Pagination';
 
 
 const SContainer = styled(Box)(({theme}) => ({
@@ -36,7 +37,7 @@ const SList = styled(List)(({theme}) => ({
 
 const TaskFilter = () => {
     const theme = useTheme();
-    const {tasks, textValue, changeTextValue, onDeleteTaskPressed, loading} = useViewTask();
+    const {tasks, textValue, changeTextValue, onDeleteTaskPressed, loading, totalPages, currentPage, changeCurrentPage} = useViewTask();
     return (
         <SContainer theme={theme}>
             <AppTextField 
@@ -50,9 +51,12 @@ const TaskFilter = () => {
                     ? <CircularProgress size={100} sx={{mt: 20}} />
                     : tasks.length === 0 
                         ? <EmptyTask />
-                        : <SList theme={theme} >
-                            {tasks.map(task => <TaskListItem key={task._id} task={task} onDeleteTaskPressed={onDeleteTaskPressed}/>)}
-                        </SList>
+                        :<> 
+                            <SList theme={theme} >
+                                {tasks.map(task => <TaskListItem key={task._id} task={task} onDeleteTaskPressed={onDeleteTaskPressed}/>)}
+                            </SList>
+                            <Pagination page={currentPage} count={totalPages} onChange={changeCurrentPage} color="primary" />
+                        </>
             }
         </SContainer>
     );

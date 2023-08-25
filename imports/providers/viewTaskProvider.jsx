@@ -12,7 +12,9 @@ const initialState = {
     loading: true,
     textValue: '',
     tasks: [],
-    error: ''
+    error: '',
+    currentPage: 1,
+    totalPages: 0,
 };
 const initialFilters = {
     personalFilter: 'all',
@@ -56,6 +58,7 @@ export const ViewTaskProvider = ({ children }) => {
 
     const changeTextValue = ({target:{value}}) => setState({...state, textValue: value.trim()});
 
+    const changeCurrentPage = (event, value) => setState({...state, currentPage: value});
 
     const onDeleteTaskPressed = (taskId) => {
         console.log(taskId);
@@ -106,8 +109,7 @@ export const ViewTaskProvider = ({ children }) => {
             if(!handler.ready()){
                 setState({...state, loading: true});
                 return;
-            }
-            
+            }            
             const getFilter = () => {
                 let regexQuery = {};
                 let personalQuery = {};
@@ -141,8 +143,10 @@ export const ViewTaskProvider = ({ children }) => {
                 
                 return filter;  
             } 
-            
-            const tasks = TaskCollection.find(getFilter()).fetch();
+
+            const totalPages = Math.ceil(TaskCollection.find(getFilter()).count()/4);
+
+            const tasks = TaskCollection.find(getFilter(), {skip: (state.currentPage - 1) * 4, limit:4 }).fetch();
 
 
             tasks.forEach(task => {
@@ -152,11 +156,11 @@ export const ViewTaskProvider = ({ children }) => {
                     name: user.profile.name,
                 }
             });
-            setState({...state, tasks: tasks, loading: false});
+            setState({...state, tasks: tasks, loading: false, totalPages: totalPages});
         }catch(error){
             setState({...state, error: error.message, loading: false});
         }
-    }, [state.textValue, taskFilters.personalFilter, taskFilters.visibilityFilter])
+    }, [state.textValue, taskFilters.personalFilter, taskFilters.visibilityFilter, state.currentPage])
 
     const contextValue = {
         ...state,
@@ -164,6 +168,7 @@ export const ViewTaskProvider = ({ children }) => {
         onDeleteTaskPressed,
         changePersonalFilter,
         changeVisibilityFilter,
+        changeCurrentPage
     }
     return (
         <>
