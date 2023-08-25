@@ -5,7 +5,6 @@ import SimpleDialog from "../ui/common/simpleDialog";
 import {TaskCollection} from "../database/taskCollection";
 import {useTracker} from "meteor/react-meteor-data";
 
-
 const EditTaskContext = createContext();
 export const useEditTask = () => useContext(EditTaskContext);
 

@@ -42,7 +42,6 @@ const DecImage = () => {
         <SContainer theme={theme}>
             <SImage src="/images/AddTaskImage.svg" />
             <Typography 
-                fontFamily= 'cursive'
                 variant="h5"
                 fontWeight='bold'
                 color = 'secondary'

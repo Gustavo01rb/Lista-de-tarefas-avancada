@@ -20,8 +20,8 @@ const EmptyTask = () => {
     return (
         <SContainer theme={theme}>
             <SImage src="/images/EmptyTask.svg" alt="Nenhuma tarefa encontrada" />
-            <Typography variant="h4" fontWeight='bold' fontFamily='cursive'>Ooops!</Typography>
-            <Typography variant="h5" fontFamily='cursive'>Nenhuma tarefa por aqui.</Typography>
+            <Typography variant="h4" fontWeight='bold' >Ooops!</Typography>
+            <Typography variant="h5">Nenhuma tarefa por aqui.</Typography>
         </SContainer>
     );
 }

@@ -69,7 +69,6 @@ const DecImage = () => {
         <SContainer theme={theme} themecolor={statusOptions().themeColor}>
             <SImage src={statusOptions().image} />
             <Typography 
-                fontFamily= 'cursive'
                 variant="h5"
                 fontWeight='bold'
                 color = 'secondary'

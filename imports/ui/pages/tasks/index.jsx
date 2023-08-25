@@ -29,7 +29,7 @@ const TasksPage = () => {
     return (
         <TemplateDrawer indexpage={1}>
             <ViewTaskProvider>
-                <Typography variant="h4" fontFamily='cursive' fontWeight='bold' > Tarefas </Typography>
+                <Typography variant="h4" fontWeight='bold' > Tarefas </Typography>
                 <ResponsiveColumns
                     reversemobile={'true'}
                     align={'flex-start'}
