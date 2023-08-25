@@ -25,6 +25,7 @@ const AppTextField = ({
     onChange, 
     error,
     title = '',  
+    endIcon = null,
     multiline = false,
     helperText, 
     ...props }) => {
@@ -86,7 +87,7 @@ const AppTextField = ({
                                 </InputAdornment>
                             ),
                         }
-                        : {}
+                        : {endAdornment: endIcon}
                 }
             />
         </SContainer>

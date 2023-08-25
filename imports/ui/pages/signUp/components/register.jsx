@@ -19,8 +19,8 @@ const SContainer = styled(Box)(({theme}) => ({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     maxWidth: '1200px',
-    padding: `${theme.spacing(3)} ${theme.spacing(5)}`,
-    gap: theme.spacing(3),
+    padding: `${theme.spacing(2)} ${theme.spacing(5)}`,
+    gap: theme.spacing(2),
     [theme.breakpoints.down('sm')]: {
         padding: `${theme.spacing(2)} ${theme.spacing(5)}`,
     }

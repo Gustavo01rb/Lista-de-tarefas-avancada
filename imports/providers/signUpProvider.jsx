@@ -79,7 +79,13 @@ export const SignUpProvider = ({ children }) => {
         const {avatar} = state.regiterFields;
         const {email, password} = state.loginFields;
         setState({...state, loading: true});
-        Accounts.createUser({email, password, profile: {avatar}}, (err) => {
+        Accounts.createUser({email, password, profile: {
+            name: event.target.name.value,
+            gender: event.target.gender.value,
+            birthDate: event.target.birthDate.value,
+            company: event.target.company.value,
+            avatar: avatar
+        }}, (err) => {
             if(err){
                 openDialog({
                     title: 'Erro ao cadastrar',

@@ -19,10 +19,10 @@ Meteor.methods({
         
         if (!this.userId) throw new Meteor.Error('Not authorized.');
           TaskCollection.insert({
-            title: title,
-            description: description,
-            date: date,
-            status: status,
+            title: title.trim(),
+            description: description.trim(),
+            date: date.trim(),
+            status: status.trim(),
             personal: personal,
             createdAt: new Date(),
             userId: Meteor.userId(),
@@ -30,5 +30,16 @@ Meteor.methods({
         } catch (e) {
           throw new Meteor.Error(e.message);
         }
+    },
+    'tasks.remove': function(taskId) {
+      try{  
+        check(taskId, String);
+        if (!this.userId) throw new Meteor.Error('Você não tem autorização para concluir essa ação.');
+        const task = TaskCollection.findOne({ _id: taskId, userId: this.userId });
+        if (!task) throw new Meteor.Error('Acesso negado.');
+        TaskCollection.remove(taskId);
+      }catch(e){
+        throw new Meteor.Error(e.message);
+      }
     },
 });

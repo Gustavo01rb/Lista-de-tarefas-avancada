@@ -9,6 +9,7 @@ import { Typography } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import WarningIcon from '@mui/icons-material/Warning';
 
 const SimpleDialog = ({ 
     open, 
@@ -28,17 +29,23 @@ const SimpleDialog = ({
             onClose={onClose}
         >
             <DialogTitle 
-                color = {variant }
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'flex-start',
                     gap: theme.spacing(1),
                     paddingLeft: theme.spacing(2),
+                    color: variant === 'error' 
+                    ? theme.palette.error.main 
+                    : variant === 'success' 
+                        ? theme.palette.success.main 
+                        : variant === 'warning' 
+                            ? theme.palette.warning.main : ''
                 }}
             > 
                 {variant === 'error' && <CancelIcon />}
                 {variant === 'success' && <CheckCircleIcon />}
+                {variant === 'warning' && <WarningIcon />}
                 {title} 
             </DialogTitle>
             <DialogContent sx={{marginLeft: theme.spacing(3)}}>

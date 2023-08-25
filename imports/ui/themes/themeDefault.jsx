@@ -18,19 +18,20 @@ const theme = createTheme({
       main: '#1576A3',
       contrastText: '#ffffff',
     },
+    warning: {
+      main: '#FAA900',
+      contrastText: '#ffffff',
+    },
     notStartedTask:{
       main: '#823F10',
-      dark: '#000000',
       contrastText: '#ffffff',
     },
     inProgressTask:{
       main: '#201082',
-      dark: '#000000',
       contrastText: '#ffffff',
     },
     finishedTask:{
       main: '#00FF00',
-      dark: '#008000',
       contrastText: '#ffffff',
     },
   },
