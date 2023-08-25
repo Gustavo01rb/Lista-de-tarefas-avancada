@@ -7,6 +7,7 @@ import HomePage from "../ui/pages/home";
 import TasksPage from "../ui/pages/tasks";
 import ProfilePage from "../ui/pages/profile";
 import AddTaskPage from "../ui/pages/addTask";
+import EditTaskPage from "../ui/pages/editTask";
 
 export const MainRoutes = ({user}) => {
     return (
@@ -21,6 +22,7 @@ export const MainRoutes = ({user}) => {
                             <Route path="/home" element={<HomePage />} />
                             <Route path="/tasks" element={<TasksPage />} />
                             <Route path="/tasks/new" element={<AddTaskPage />} />
+                            <Route path="/tasks/edit/:taskId" element={<EditTaskPage />} />
                             <Route path="/profile" element={<ProfilePage />} />
                         </Routes>
                     </ProtectedRoute>

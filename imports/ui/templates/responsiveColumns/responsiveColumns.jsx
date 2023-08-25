@@ -9,6 +9,7 @@ const SContainer = styled(Box)(({
         align = 'center',
         justifymobile = 'flex-start',
         alignmobile = 'flex-start',
+        reversemobile = false,
         padding = 5,
         spacing = 10,
         spacingmobile = 10
@@ -20,7 +21,7 @@ const SContainer = styled(Box)(({
     alignItems: align,
     padding: theme.spacing(padding),
     [theme.breakpoints.down('sm')]: {
-        flexDirection: 'column',
+        flexDirection: reversemobile ? 'column-reverse' : 'column',
         justifyContent: justifymobile,
         alignItems: alignmobile,
         gap: theme.spacing(spacingmobile),
@@ -37,6 +38,7 @@ const ResponsiveColumns = ({
     alignmobile, 
     spacing,
     spacingmobile,
+    reversemobile,
     ...props
 }) => {
   const childrenArray = React.Children.toArray(children);
@@ -50,6 +52,7 @@ const ResponsiveColumns = ({
         alignmobile = {alignmobile} 
         justifymobile = {justifymobile}
         spacing = {spacing}
+        reversemobile = {reversemobile}
         spacingmobile = {spacingmobile} 
         {...props}
     >

@@ -15,6 +15,10 @@ import {StatusTaskOptions} from "../../../helpers/selectOptions";
 
 const SContainer = styled(Box)(({theme}) => ({
     width: '40%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
     [theme.breakpoints.down('sm')]: {
         width: '100%',
     }

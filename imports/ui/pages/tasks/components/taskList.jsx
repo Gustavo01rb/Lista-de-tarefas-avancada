@@ -18,9 +18,11 @@ const SContainer = styled(Box)(({theme}) => ({
     alignItems: 'center',
     justifyContent: 'flex-start',
     gap: theme.spacing(4),
+
     [theme.breakpoints.down('sm')]: {
         width: '100%',
     }
+
 }));
 
 const SList = styled(List)(({theme}) => ({

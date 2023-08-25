@@ -3,6 +3,7 @@ import { Meteor } from "meteor/meteor";
 import SimpleDialog from "../ui/common/simpleDialog";
 import {useTracker} from "meteor/react-meteor-data";
 import {TaskCollection} from "../database/taskCollection";
+import {StatusTaskOptions} from "../ui/helpers/selectOptions";
 
 const ViewTaskContext = createContext();
 export const useViewTask = () => useContext(ViewTaskContext);
@@ -53,7 +54,7 @@ export const ViewTaskProvider = ({ children }) => {
         });
     }
 
-    const changeTextValue = ({target:{value}}) => setState({...state, textValue: value});
+    const changeTextValue = ({target:{value}}) => setState({...state, textValue: value.trim()});
 
 
     const onDeleteTaskPressed = (taskId) => {
@@ -99,7 +100,7 @@ export const ViewTaskProvider = ({ children }) => {
     useTracker(() => {
         try{
             if(!Meteor.userId()) throw new Meteor.Error('Acesso não autorizado.');
-            const handler = Meteor.subscribe('tasks', state.textValue.trim(), taskFilters.personalFilter, taskFilters.visibilityFilter );
+            const handler = Meteor.subscribe('tasks');
             setState({...state, loading: true});
             
             if(!handler.ready()){
@@ -107,20 +108,52 @@ export const ViewTaskProvider = ({ children }) => {
                 return;
             }
             
-            const tasks = TaskCollection.find().fetch();
+            const getFilter = () => {
+                let regexQuery = {};
+                let personalQuery = {};
+                let statusQuery = [];
+
+                if (state.textValue) 
+                    regexQuery = {title: {$regex: state.textValue, $options: 'i'}};
+                switch(taskFilters.personalFilter){
+                    case 'personal':
+                        personalQuery = {personal: true};
+                        break;
+                    case 'public':
+                        personalQuery = {personal: false};
+                        break;
+                    case 'other':
+                        personalQuery = {userId: {$ne: Meteor.userId()}};
+                    break;
+                    default:
+                        personalQuery = {};
+                    break;
+                }
+
+                if(taskFilters.visibilityFilter.registred) 
+                    statusQuery.push({status: StatusTaskOptions.notStarted});
+                if(taskFilters.visibilityFilter.inProgress)
+                    statusQuery.push({status: StatusTaskOptions.inProgress});
+                if(taskFilters.visibilityFilter.done)
+                    statusQuery.push({status: StatusTaskOptions.done});
+
+                const filter = statusQuery.length > 0 ? {$and: [{$or: statusQuery}, regexQuery, personalQuery]} : {$and: [regexQuery, personalQuery]};
+                
+                return filter;  
+            } 
+            
+            const tasks = TaskCollection.find(getFilter()).fetch();
+
+
             tasks.forEach(task => {
                 console.log(taskFilters.personalFilter, taskFilters.visibilityFilter);
                 const user = Meteor.users.findOne(task.userId);
                 task.userInfo = {
                     name: user.profile.name,
-                    email: user.emails[0].address,
-                    company: user.profile.company,
-                    avatar: user.profile.avatar
                 }
             });
             setState({...state, tasks: tasks, loading: false});
         }catch(error){
-            console.log(error);
             setState({...state, error: error.message});
         }
     }, [state.textValue, taskFilters.personalFilter, taskFilters.visibilityFilter])
