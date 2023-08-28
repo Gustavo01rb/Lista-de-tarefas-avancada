@@ -13,6 +13,9 @@ import {Meteor} from "meteor/meteor";
 import Typography from '@mui/material/Typography';
 import UserCardInfo from "../../../common/userCardInfo";
 import Button from "@mui/material/Button";
+import SaveIcon from '@mui/icons-material/Save';
+import CancelIcon from '@mui/icons-material/Cancel';
+
 
 const SContainer = styled(Box)(({theme})=>({
     width: '60%',
@@ -122,6 +125,7 @@ const FormEditTask = () => {
                             {edited && <Button 
                                 variant="text"
                                 color="error"
+                                startIcon={<CancelIcon />}
                                 sx={{transition: '0.3s'}}
                                 onClick={() => cancelEdit() }
                             >Cancelar Alterações</Button>}
@@ -129,6 +133,7 @@ const FormEditTask = () => {
                                 type={'submit'}
                                 loading={loadingButton}
                                 disabled={!edited}
+                                startIcon={<SaveIcon />}
                     > Salvar alterações </AppLoadingButton>
                         </SButtonContainer>
                     }

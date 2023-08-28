@@ -14,12 +14,11 @@ const SContainer = styled('div')(({ outilined }) => ({
   border: outilined ? '1px solid #ccc' : 'none',
   borderRadius: '5px',
   padding: outilined ? '10px' : '0',
-  marginBottom: '10px',
+  gap: '10px',
 }));
 
 const StyledLabel = styled('label')({
   display: 'block',
-  marginBottom: '10px',
 });
 
 const SButtonContainer = styled('div')({
@@ -28,7 +27,7 @@ const SButtonContainer = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-evenly',
-  padding: '10px 0',
+  gap: '10px',
 });
 
 const InputAvatar = ({
@@ -83,12 +82,14 @@ const InputAvatar = ({
           >
             Carregar Foto
           </Button>
-          <input
+          {!disabled && (
+            <input
             type="file"
             accept="image/*"
             onChange={handleFileChange}
             style={{ display: "none" }}
-          />
+          />)  
+          }
         </StyledLabel>
         <Button
           style={{

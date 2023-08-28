@@ -97,8 +97,7 @@ export const SignUpProvider = ({ children }) => {
                 navigate('/');
             }
         });
-
-
+        setState({...state, loading: false});
     }
 
     const valueContext = {
