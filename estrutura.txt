@@ -1,0 +1,114 @@
+.
+├── client
+│   ├── main.html
+│   └── main.jsx
+├── estrutura.txt
+├── imports
+│   ├── api
+│   │   ├── taskMethods.js
+│   │   ├── tasksPublication.js
+│   │   ├── userMethods.js
+│   │   └── userPublication.js
+│   ├── database
+│   │   └── taskCollection.js
+│   ├── providers
+│   │   ├── addTaskProvider.jsx
+│   │   ├── editTaskProvider.jsx
+│   │   ├── homeProvider.jsx
+│   │   ├── profileProvider.jsx
+│   │   ├── signUpProvider.jsx
+│   │   └── viewTaskProvider.jsx
+│   ├── routes
+│   │   ├── mainRoutes.jsx
+│   │   ├── protectedRotes.jsx
+│   │   └── routes.jsx
+│   └── ui
+│       ├── common
+│       │   ├── appLogoIconTitle.jsx
+│       │   ├── backgroundImage.jsx
+│       │   ├── cardNumberItem.jsx
+│       │   ├── checkBox.jsx
+│       │   ├── editCard.jsx
+│       │   ├── genericCard.jsx
+│       │   ├── inputAvatar.jsx
+│       │   ├── loadingButton.jsx
+│       │   ├── loading.jsx
+│       │   ├── logoImage.jsx
+│       │   ├── select.jsx
+│       │   ├── simpleDialog.jsx
+│       │   ├── textField.jsx
+│       │   └── userCardInfo.jsx
+│       ├── helpers
+│       │   ├── drawerOptions.js
+│       │   └── selectOptions.js
+│       ├── pages
+│       │   ├── addTask
+│       │   │   ├── components
+│       │   │   │   ├── decImage.jsx
+│       │   │   │   └── formAddTaks.jsx
+│       │   │   └── index.jsx
+│       │   ├── editTask
+│       │   │   ├── components
+│       │   │   │   ├── decImage.jsx
+│       │   │   │   └── formEditTask.jsx
+│       │   │   └── index.jsx
+│       │   ├── home
+│       │   │   ├── components
+│       │   │   │   ├── body.jsx
+│       │   │   │   ├── header.jsx
+│       │   │   │   └── showStatiscs.jsx
+│       │   │   └── index.jsx
+│       │   ├── profile
+│       │   │   ├── components
+│       │   │   │   ├── emailForm.jsx
+│       │   │   │   ├── formData.jsx
+│       │   │   │   └── passwordForm.jsx
+│       │   │   └── index.jsx
+│       │   ├── signUp
+│       │   │   ├── components
+│       │   │   │   ├── login.jsx
+│       │   │   │   └── register.jsx
+│       │   │   └── index.jsx
+│       │   └── tasks
+│       │       ├── components
+│       │       │   ├── emptyTask.jsx
+│       │       │   ├── listItem.jsx
+│       │       │   ├── taskFilter.jsx
+│       │       │   └── taskList.jsx
+│       │       └── index.jsx
+│       ├── templates
+│       │   ├── drawer
+│       │   │   ├── header.jsx
+│       │   │   ├── listItem.jsx
+│       │   │   ├── listOption.jsx
+│       │   │   └── templateDrawer.jsx
+│       │   └── responsiveColumns
+│       │       └── responsiveColumns.jsx
+│       └── themes
+│           ├── globalStyle.jsx
+│           └── themeDefault.jsx
+├── public
+│   └── images
+│       ├── AddTaskImage.svg
+│       ├── bg
+│       │   └── work1.jpg
+│       ├── done.svg
+│       ├── EmptyTask.svg
+│       ├── error.svg
+│       ├── Icon_white.ico
+│       ├── inProgress.svg
+│       ├── loading.svg
+│       ├── logo
+│       │   ├── Horizontal_black_logo.svg
+│       │   ├── Horizontal_white_logo.svg
+│       │   ├── Icon_black.svg
+│       │   ├── Icon_white.svg
+│       │   ├── Vertical_black_logo.svg
+│       │   └── Vertical_white_logo.svg
+│       └── notStarted.svg
+├── Readme.md
+├── server
+│   └── main.js
+└── tests
+    └── main.js
+

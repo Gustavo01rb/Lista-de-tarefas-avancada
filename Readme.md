@@ -1,64 +1,84 @@
-## Lista de Tarefas Avançada
+# Documentação do Projeto - Software de Gerenciamento de Tarefas
 
-### Descrição
-Esta é uma lista de tarefas avançada para criar uma aplicação de lista de afazeres com recursos adicionais, como autenticação de usuários, roteamento, design usando Material-UI e muito mais.
+## Introdução
+Esta documentação foi desenvolvida como parte de uma atividade da disciplina de "Contexto Social da Engenharia de Computação" e tem como objetivo apresentar o projeto de Software de Gerenciamento de Tarefas, bem como fornecer informações detalhadas sobre as tecnologias utilizadas, padrões de projeto, organização de código e como instalar e executar o projeto.
 
-### Instruções
-Siga as etapas abaixo para completar as tarefas propostas:
+## Tecnologias Utilizadas
+O projeto de Software de Gerenciamento de Tarefas foi desenvolvido utilizando as seguintes tecnologias e frameworks:
 
-### 1. Autenticação e Acesso do Usuário
-Crie uma aplicação Meteor que só seja acessível por usuários logados. Implemente um sistema de login e senha.
+### 1. Meteor.js
+O framework Meteor.js foi escolhido para o desenvolvimento deste projeto devido à sua capacidade de construir aplicativos web em tempo real de forma eficiente. Ele oferece recursos como integração de banco de dados, gerenciamento de pacotes, autenticação de usuário e muito mais, tornando-o uma escolha ideal para aplicativos web robustos e escaláveis.
 
-Pacotes a serem utilizados:
-- [Meteor Accounts](https://guide.meteor.com/accounts.html)
+### 2. React
+O React é uma biblioteca JavaScript de código aberto amplamente utilizada para criar interfaces de usuário interativas e reativas. Ele foi integrado ao Meteor.js para fornecer uma experiência de usuário dinâmica e responsiva.
 
-### 2. Rotas com React Router
-Adicione rotas à sua aplicação usando o pacote React Router. O sistema deve ter uma tela de boas-vindas e pelo menos uma tela que liste as tarefas.
+### 3. Outras Tecnologias
+* HTML5 e CSS3 foram utilizados para a estruturação e estilização das páginas web.
+* Banco de dados MongoDB foi escolhido como o banco de dados principal para armazenar dados do aplicativo.
+* JavaScript ES6+ foi a linguagem de programação principal utilizada no desenvolvimento.
+* Material UI foi um framework utilizado para auxiliar a estilização.
 
-Pacotes a serem utilizados:
-- [React Router](https://reacttraining.com/react-router/)
+## Como Instalar e Executar o Projeto
 
-### 3. Lista de Tarefas Simples com Material-UI
-Implemente uma lista de tarefas simples usando o pacote Material-UI. A lista de tarefas deve ser exibida usando o componente List, mostrando um ícone, o nome da tarefa no texto principal e o usuário que criou a tarefa no texto secundário. Todos os outros componentes de interação com o usuário também devem ser do pacote Material-UI. Consulte a seção de Componentes na documentação para detalhes sobre os componentes.
+Para instalar e executar o projeto em seu ambiente de desenvolvimento, siga os passos abaixo:
 
-Pacotes a serem utilizados:
-- [Material-UI](https://material-ui.com/)
+### Pré-requisitos:
+* Certifique-se de ter o Node.js instalado em sua máquina. Você pode fazer o download em [https://nodejs.org/](https://nodejs.org/).
+> É necessário ter a versão do node >10 e < 14
+* Certifique-se também de ter instalado o Meteor.js: [https://guide.meteor.com/](https://guide.meteor.com/)
 
-### 4. Detalhes e Edição de Tarefas
-Crie duas telas para a Lista de Tarefas. A primeira tela deve exibir uma lista de tarefas com botões de ícone para remover e editar tarefas. A edição de uma tarefa deve levar a outra rota onde os usuários podem editar as informações da tarefa e salvar as alterações, retornando à tela anterior. Essa tela terá dois estados: Visualização e Edição. Quando acessada, estará no estado de Visualização. Ao clicar em Editar, mudará para o estado de Edição, permitindo alterações nas informações da tarefa. As tarefas devem incluir: Nome, Descrição, Status, Data e o usuário que a criou. Todos os componentes de interação do usuário devem ser do pacote Material-UI. Os status possíveis são: Criada, Em Progresso e Concluída. A tela de Visualização deve ter botões para mudar o status das tarefas e esses botões devem estar desabilitados quando as transições não forem possíveis.
+### Passos de Instalação
+1. Clone o repositório do projeto para o seu computador:
 
-### 5. Gerenciamento de Tarefas Específicas do Usuário
-Modifique o sistema para permitir apenas que o criador da tarefa a edite ou a exclua, mas que todos possam visualizá-la.
+~~~bash
+git clone https://github.com/Gustavo01rb/Lista-de-tarefas-avancada.git
+~~~
 
-### 6. Tarefas Pessoais vs Públicas
-Permita que as tarefas sejam marcadas como pessoais. Se uma tarefa for marcada como pessoal, apenas o criador da tarefa poderá visualizá-la. Implemente essa restrição de visibilidade através do sistema de publicações do Meteor.
+1. Navegue até o diretório do projeto:
 
-### 7. Gerenciamento do Perfil do Usuário
-Implemente uma seção de Perfil do Usuário para usuários logados. Os usuários devem ter as seguintes informações usando componentes do Material-UI: Nome, E-mail, Data de Nascimento, Gênero (usando combobox/selects), Empresa e uma Foto (salva no banco de dados usando base64).
+~~~bash
+cd Lista-de-tarefas-avancada
+~~~
 
-### 8. Navegação com Drawer
-Usando o Material-UI, crie um Drawer com dois links: um para acessar a lista de tarefas e outro para acessar os dados do usuário logado. Os dados do usuário (foto, nome e e-mail) devem ser visíveis no topo do Drawer.
+1. Instale as dependências do servidor Meteor:
 
-### 9. Painel de Controle para Tarefas
-Modifique a tela de boas-vindas exibida após o login para mostrar um painel de controle de tarefas com informações como Total de Tarefas Criadas, Total de Tarefas em Progresso, Total de Tarefas Concluídas e uma ação para acessar a lista completa de tarefas.
+~~~bash
+meteor npm install
+~~~
 
-### 10. Estilização CSS e Componentes
-Tarefa extra (opcional): Refine o design visual da aplicação e os componentes usando CSS. Considere utilizar flexbox para o design de layout. (Opcional)
 
-### 11. Exibição de Tarefas Concluídas
-Tarefa extra (opcional): Adicione uma caixa de seleção à lista de tarefas para exibir tarefas concluídas. Quando desmarcada, apenas as tarefas com os status "Criada" e "Em Progresso" devem ser mostradas. Use ReactiveVar do Meteor e realize a filtragem no lado do servidor usando publicações. (Opcional)
+1. Inicie o servidor Meteor:
 
-### 12. Pesquisa de Tarefas
-Tarefa extra (opcional): Implemente um campo de pesquisa para filtrar tarefas com base em seus nomes. A pesquisa deve retornar tanto tarefas pessoais do usuário logado quanto tarefas públicas. Realize essa filtragem no lado do servidor usando publicações do Meteor. (Opcional)
+~~~bash
+meteor
+~~~
 
-### 13. Paginação
-Tarefa extra (opcional): Adicione paginação às listas de tarefas, limitando cada página a um máximo de 4 tarefas. Use SKIP e LIMIT nas consultas do MongoDB para a paginação. Realize essa paginação no lado do servidor usando publicações do Meteor. (Opcional)
+Isso iniciará o servidor Meteor e o aplicativo estará disponível em http://localhost:3000 no seu navegador.
 
-### Protótipos e Recursos
-- [Tutorial do React Router](https://medium.com/collabcode/roteamento-no-react-com-os-poderes-do-react-router-v4-fbc191b9937d)
-- [Tutorial de Contas de Usuário do Meteor](https://www.meteor.com/tutorials/react/adding-user-accounts)
-- [Formulários no React com Material-UI](https://medium.com/@alxsanborn/forms-in-react-js-redux-using-material-ui-ec08c2ce23bc)
-- [Introdução ao React Router](https://medium.com/@marcellamaki/a-brief-overview-of-react-router-and-client-side-routing-70eb420e8cde)
-- [Filosofia do React Router](https://tylermcginnis.com/react-router-philosophy-introduction/)
-- [Tutorial do React Router](https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf)
-- [Navegação Programática com React Router](https://tylermcginnis.com/react-router-programmatically-navigate/)
+## Padrões de Projeto
+Para garantir a manutenibilidade e escalabilidade do projeto, foram adotados os seguintes padrões de projeto:
+
+### 1. Estrutura de Diretórios
+A estrutura de diretórios do projeto segue uma organização lógica que facilita a localização de arquivos e componentes. Os principais diretórios incluem:
+
+* client: Contém os arquivos relacionados à interface do usuário.
+* imports: Armazena arquivos JavaScript e componentes reutilizáveis.
+* server: Contém o código relacionado ao servidor Meteor.
+* public: Armazena arquivos públicos, como imagens e ícones.
+* tests: Contém os testes automatizados do aplicativo.
+
+### 2. Componentização
+O projeto utiliza o conceito de componentização, onde os elementos da interface do usuário são divididos em componentes reutilizáveis. Isso facilita a manutenção e a extensão do aplicativo.
+
+### 3. Gerenciamento de Estado
+O estado do aplicativo é gerenciado principalmente através do React Context API e do Meteor Data, permitindo uma comunicação eficiente entre componentes e atualizações em tempo real.
+
+### 4. Rotas e Navegação
+As rotas e a navegação entre as diferentes páginas do aplicativo são controladas pelo pacote react-router-dom, garantindo uma experiência de usuário fluida.
+
+### 5. Estilização
+A estilização é feita utilizando CSS combinado com bibliotecas de estilo, como Material-UI, para criar uma interface moderna e agradável.
+
+## Organização de Código
+O código do projeto é organizado de forma a manter a coesão e a separação de responsabilidades. Cada diretório possui um propósito específico, e os principais componentes estão agrupados logicamente. Além disso, foram adotadas convenções de nomenclatura para facilitar a leitura do código.
+
